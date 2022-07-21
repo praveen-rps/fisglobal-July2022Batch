@@ -1,0 +1,393 @@
+Application is a piece of software that provides some services.
+
+redbus.in --> booking bus tkts
+
+makemytrip.com---> booking bus, train, flights, rooms, etc.,
+
+hdfcnetbanking.in  ---> for hdfc online banking services.
+
+COBOL
+C
+FoxPro
+Dbase  ----> 1980-- earyl 1990
+
+1990 --> internet is growing more rapidly
+
+available globally
+
+
+1. Microsoft  -----> web applications  --> .net  (visual basics--->standalone applications)
+
+2. Sun Microsytems  ---> Java --->  
+
+2016--<jio
+
+
+
+Web Applications
+Platform indepedent
+OOPS
+secure and reliable
+robust
+
+class <classname>
+		public static void main(String args[]){
+			// statements;
+		}
+}
+
+
+Test.java --------> compiled ------> Test.class (bytecode) ----> jvm of respective machine
+
+-------> interpreted ----> Test.obj---> Test   
+
+
+IDE --> integrated development Env.
+
+
+Output functions
+----------------
+System.out.println("string");  // displayed on the monitor
+
+int
+float
+double
+long int
+short
+byte
+char
+String
+boolean  -- true/false
+Date  --dd/mm/yy
+
+
+int a,b,c;
+double ch;
+
+
+Read methods in java
+------------------------
+
+scanf()---> to read the values from the keyboard
+
+ utility class
+IO Streams  -----> BufferedReader objects for reading...
+
+java.util.*;
+
+predefined classes  ----> predefined packages
+java.util.
+java.lang
+java.io
+java.net
+java.servlet.
+
+
+using scanner class
+
+Scanner sc  = new Scanner(System.in);  // keyboard notation object
+int a = sc.nextInt();
+
+nextInt()  --- read int 
+nextFloat()  -- float
+nextDouble()  --double
+nextChar()  --- char
+next()  -- string
+nextLine() ---string with spaces
+
+
+
+control statements----> these statements are used to transfer the control from one part to another part
+if  --> if, if..else, nested if, else if ladder
+switch  
+loops  ---> while, do..while, for
+
+1. procedure
+2. object oriented
+3. functional 
+4. logic
+5. scripting
+
+java2 ---> java18
+1995        2022
+
+java4
+java8  (90% )
+java11  (Production support) 
+
+OOPS  ----  java7
+OOPS  + functional ----> java8
+
+class, object, databinding, data abstraction, encapsulation, inheritance, polymorphism
+
+Class is a collection of objects / blue print of the objects which are having the same behaviour
+
+
+class is a generic entity   
+Book  --> Java book, Oracle Book,  SqL book
+
+HumanBeing  ----> Praveen, Suresh, Kishore, Anil, Keerhti, Sanjay
+y = mx + c  ---> straight line with y intercept
+
+y = 4x+3----> 
+
+
+class represents a group, class is a logical entity, it cannot exits on its own.
+Object represents a single instance, object is a real time enity, it can exists on its own.
+
+Encapsulation --- The process of binding the data and methods in a single entity called class
+
+data variables
+methods
+
+Abstraction--- selective hiding and selective display of data or methods
+are called abstraction
+
+
+
+
+inheritance---> the process of acquiring the properties from one class to another class
+
+polymorphism ---> The ability of an enity to exists in more than one form.
+
+Compiletime --- The form to be selected if it know at the time of compilation itself then it is called CTP
+Runtime --- The form to be selected if it is know only at the runtime, then it is called RTP
+
+
+class ---> It is collection of methods and data variables, class repsents blue print of the objects.
+
+syntax:
+
+accesmodifer class <classname>{
+		// instance variables;
+		// instance methods;
+}
+
+access modifiers ---> specify the level of the security to the data or methods.
+public  -----> that method / variable can be access anywhere, inside the class or outside the class
+private  ---> It cannot be accessed anywhere else except within the class
+protected ---> This data can be accessed within the class and the classes which are inherited.
+
+         (default)---> this data can be accessed by all the classes in the same package
+
+
+public class Employee{
+		String name;
+	    String dept;
+        String desg;
+	    public void getData(){
+
+		}
+		public void showData(){
+	
+		}
+}
+
+1. Every class must be declared as reusable component.
+
+
+
+Object creation
+
+<classname> <objname> = new <classname>();
+Employee emp1 = new Employee();
+
+1. Individual memory space will be allocated to only instance variables for all the objects
+2. All the Objects share the same method references
+
+
+
+Steps performed while object is created.
+-----------------------------------------
+
+1. Load the .class into primary memory
+2. Instantiate the instance variables.
+3. Intialize the instance variables
+	
+
+Inside a java class, there are 3 types of variables.
+
+1. instance variables or non static variables.
+2. static variables.
+3. method variables
+
+
+this----> 
+
+static variable is a class level variabes, where all the objects share the common space
+when we want to share the same data between the objects, then we can use static variables.
+
+A static method can access only static data
+but a non static method can access static aswell as non static variables.
+
+non static block  -- Will be automatically executed just before the constructor..
+static block  -- will be automatically executed when ever the .class file is loaded into memory.
+
+
+static
+1. variable---> all the objects share the common space
+2. method -----> method can be called directly on the class without creating the object
+3. block  ----> will be automatically executed whenever the .class file is loaded into memory.
+
+Constructor
+-----------
+Constructors are building blocks of the objects, all objects are created by using a constructor.
+they are of two types:
+1. default or zero parameterized constructor.
+2. parameterized constructor.
+
+default constructors can be provided by user or system (java)
+parameterized constructors will be provided only by the users.
+
+It is a special member function, will have the same name as that of 
+class name and doesn't have any return type including void.
+
+basically paramterized construtors define a rule in creating the object
+
+this()---->this method is used to call one constructor form in the another constructor form.
+
+rules in using this()
+---------------------
+1. this() method call must be the first line of statement.
+2. this() method cannot be recursively called.
+3. this() method should not form a cycle
+4. this() method cannot be called from userdefined method or instance methods
+5. instance methods can be called in the construtor
+
+
+Polymophism
+------------
+The ability of an entity to exists in more than one form is called polymorphism
+
+1. Compile time polymorphism  -- The form to be exhibited, if it is know at the compile time itself
+    Ex> Overloading
+
+2. Runtime polymorphism -- The form to be exhibited, if it is know at the runtime 
+   ex> Overriding
+
+
+  public void sample(int x){
+
+		// some code;
+	}
+
+	sample("praveen");    
+
+
+Method overloading
+------------------
+A method is said to be overloaded, iff two or more methods have the same name, and if it differs 
+in the following any one of the behaviour
+
+1. If there is a change in the number of paramters
+2. If there is a change in the type of paramters
+3. if there is a change in the order of parameters
+
+public void sample(int a, int b)
+{
+
+}
+
+public void sample(int z, char b){
+
+
+}
+
+public void setData(String name){
+
+}
+
+public String setData(String city){
+
+}
+
+public int setData(String pin)
+{
+
+}
+
+setData() is not overloaded, as there is no change in the number or type or order
+
+
+setData()--->
+
+
+Relation
+--------
+
+1. Has-a --> Whenever an instance of one class is used in another class.  (Object level)
+2. Is-a  ---> whenever one class inherits the another class (at code level)  -- Inheritance
+3. uses  --> whenever an object is passed a referecne to another class instance method. (object level)
+
+class Address{
+    int dno;
+    String street;
+    String city;
+    String pin;
+}
+class Person{
+	String name;
+    String ssn;
+ 	Address address;
+
+}
+In the above code Address class object is used as an instance variable, so its' Has-a relation.
+
+class Person{
+	String name;
+    String ssn;
+ 	public void showData(Address address){
+		Sysout(name,ssn,address);
+	}
+
+}
+In the above code showData() method is having Address class object as parameter, so its' uses relation.
+
+
+Is-a  -- Inheritance
+---------------------
+The process of acquring the data or methods from one class to another class is called inheritance
+the class which is providing the data is called base or parent class and the class which is acquiring
+the properties is called derived or child class.
+
+Basically it is used for code resusability.
+
+PermanentEmployee(name,dept,desg,qual,exp,doj,hra,da,it,netsal)
+
+TemporaryEmployee(name,dept,desg,qual,exp,doj,consal)
+
+HourlyBasedEmployee(name,dept,desg,qual,exp,doj,noh,rph)
+
+
+
+Employee(name,dept,desg,qual,exp,doj)
+
+
+PermanentEmployee(,hra,da,it,netsal)
+
+
+TemporaryEmployee(consal)
+
+
+HourlyBasedEmployee(noh,rph)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
