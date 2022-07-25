@@ -1,0 +1,324 @@
+Inheritance
+-----------
+The process of acquiring the properties from one class to another class.
+
+PermanetEmployee(name,dept,desg,qual,exp,doj,hra,da,it,netsal,grosssal)
+
+TemporaryEmployee(name,dept,desg,qual,exp,doj,conSal)
+
+HourlyBasedEmployee(name,dept,desg,qual,exp,noh,rph,sal)
+
+Java supports the following types of inheritances
+
+1. single inheritance
+
+2. multilevel inheritance
+
+3. multiple inheritance (interfaces only)
+
+Overriding
+-----------
+
+It is the process of supressing the base class method or data in the derived class when both are having
+the same signature or name.
+
+
+supressing the data is called data overriding
+supressing the method is called method overriding.
+
+super is a keyword used to specify the immediate parent data to resolve the ambiguity.
+Data overriding is an example of runtime polymorphism
+
+
+Object class
+-------------
+
+It is the parent or base class for all the objects including userdefined objects.
+All the classes are implicitly inherited from the Object class only.
+
+
+Methods in Object
+------------------
+
+1. public Object clone();  This method will produce exactly a carbon of object
+
+2. public int hashCode();  
+
+3. public boolean equals(Object obj)
+
+4. public String toString()
+
+5. public void notify()
+
+6. public void notifyAll()
+
+7. public void wait(int sec);
+
+8. public void wait();
+
+9. public void wait(int sec, int ns)
+
+10. public void finalize();
+
+Interfaces
+-----------
+Interfaces are java elements which consists of all abstract methods.
+A method is said to be abstract if it doesnt have the body or implementation
+basically interfaces defines the rule.
+It provides an skeleton
+
+1. We cannot write any constructors in the interfaces
+2. we cannot declare any variables.
+3. but we can intialize a constant and used
+
+By using interfaces, we can implement the multiple inheritance.
+
+class implements interface1, interface2  ---> valid
+
+interface implements interface1, interface2 ---->invalid
+
+inteface1 extends interface2  --->valid
+
+inteface1 extends interface2, interface3
+
+class extends class implements interface
+
+class implements interface extends interface
+
+
+Lambda Expressions
+------------------
+Lambda expressions basically express instances of functional interfaces 
+(An interface with single abstract method is called functional interface.
+ An example is java.lang.Runnable). 
+
+lambda expressions implement the only abstract function and therefore implement functional interfaces
+
+lambda expressions are added in Java 8 and provide below functionalities.
+
+    Enable to treat functionality as a method argument, or code as data.
+    A function that can be created without belonging to any class.
+    A lambda expression can be passed around as if it was an object and executed on demand.
+
+
+public void display(){
+	System.out.println("Hello world");
+}
+
+
+It is an annomyous method, which doesnot have any access modifier, return type and also 
+method name.
+
+()->{
+	System.out.println("Hello world");
+}
+
+
+If there is only one line in the method body, then {} block is not required.
+
+()->System.out.pritln("Hello World");
+
+
+public void add(int a, int b)
+{
+		System.out.pritln("The sum is :"+(a+b));
+}
+
+
+(int a, int b) -> System.out.pritln("The sum is :"+(a+b));
+In lamdba expressions datatype for the arguments is also not required.
+
+(a,b) -> System.out.println("The sum is :"+(a+b));
+
+
+public int sub(int a, int b)
+{
+	return a-b;
+}
+
+(a,b)->return a-b;
+If there is only one return statement, then return keyword is not required.
+
+(a,b)->a-b;
+
+
+
+public boolean test(int a, int b)
+{
+	if(a<b)
+		return true;
+	else
+		return false;
+}
+
+(a,b)->a<b;
+
+public void testData(int a, int b){
+	int c =0;
+	// more than one line;
+}
+
+
+(a,b)->{
+	// int c=0;
+    // all lines of code;
+}
+
+
+public int testSampe(int a, int b)
+{
+	  // statments;
+	// return value;
+}
+
+
+(a,b)->{
+		// statements;
+		return value;
+}
+
+
+Note: Lamdba expressions are explicitly used to implement functional interfaces
+lamdba expressions are used to implement functional interfaces only.
+
+An interface which has only one abstract method is called funtional interface.
+
+public interface Maths{
+	public int add(int a, int b);
+}
+
+public interface Geometry{
+		public int calArea(int dim1, int dim2);
+}
+
+1. Thread class
+2. Runnable Interface
+3. Comparable
+4. Comparator
+5. Listerner
+
+
+General purpose predefined functional interfaces
+------------------------------------------------
+
+class Utilities{
+public boolean isEven(int x)
+{
+	if(x%2==0)
+      return true;
+	else
+	  return false;
+}
+
+
+public boolean isStringSizeGreaterThan10(String str)
+{
+   if(str.length() > 10)
+		return true;
+  else
+		return false;
+}
+
+
+public boolean isPrime(int x){
+		// check the prime number
+		if yes return true else return false
+}
+
+}
+
+
+1. Predicate
+2. Function
+3. Supplier
+4. Consumer
+
+5. BiPredicate
+6. BiConsumer
+
+java.util.function;
+
+
+
+Predicate:
+----------
+
+It is a functional interface, which has only one method called test, which can take any argument type
+and returns only boolean.
+
+
+@FunctionalInterface
+public interface Predicate<T>{
+		public static boolean test(T t);
+}
+
+Predicate<Integer> p1 = x-> x%2==0;
+Predicate<String> p2 = s-> s.length()>10;
+Predicate<Integer> p3 = x->x>20;
+
+
+p3.and(p1).test(21)
+p3.or(p1).test(16);  ---> true
+p3.or(p1).test(4);----> true
+p3.or(p1).test(23)----> true
+
+Function
+--------
+It is also a predefined general purpose Functional interfaces, which has only one method called
+apply, which can take any datatype as input and can return any datatype as returntype.
+
+
+@FunctionalInterface
+public interface Function<T,R>{
+	public R apply(T t);
+}
+
+
+Function<Integer,Integer>  fact = x->{
+	int f=1, fact=1;
+    if( f==1 || f==0)
+		fact=1;
+    else{
+			for(int i=2;i<=x;i++)	
+				fact=fact*i;
+	}
+ 	return fact;
+
+};
+
+
+Consumer
+--------
+
+Consumer is a general purpose functional interface, which will take any datatype as argument
+but returns void.
+
+
+@FunctionalInterface
+public interface Consumer<T>{
+		public void accept(T t);
+}
+
+Consumer<Integer> c = x -> System.out.println("The square is : "+ (x*x));
+}
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,511 @@
+Supplier: It is also a functional interface, which has only one method called
+get(), it won't take any parameter but returns a single value of any type.
+
+
+@FunctionalInterface
+public interface Supplier<R>{
+	public R get();
+}
+
+
+import java.util.function.*; 
+2) import java.util.*; 
+3) class Test 
+4) { 
+5) public static void main(String[] args) 
+6) { 
+7) Supplier<Date> s=()->new Date(); 
+8) System.out.println(s.get()); 
+9) System.out.println(s.get()); 
+10) System.out.println(s.get()); 
+11) }
+
+
+1) import java.util.function.*; 
+2) import java.util.*; 
+3) class Test 
+4) { 
+5) public static void main(String[] args) 
+6) { 
+7) Supplier<String> otps=()->{ 
+8) String otp=""; 
+9) for(int i =1;i<=6;i++) 
+10) { 
+11) otp=otp+(int)(Math.random()*10); 
+12) } 
+13) return otp; 
+}; 
+15) System.out.println(otps.get()); 
+16) System.out.println(otps.get()); 
+17) System.out.println(otps.get()); 
+18) System.out.println(otps.get()); 
+19) } 
+20) }
+
+
+@FunctionalInterface
+public interface BiPredicate<T1,T2>{
+	
+	public boolean test(T1 t1, T2 t2);
+}
+
+
+Method Referncing,
+------------------
+
+
+class Sample { 
+	private String s; 
+	Sample(String s) { 
+	     this.s = s; 
+	     System.out.println("Constructor Executed:"+s); 
+	  } 
+ } 
+
+
+ interface Interf { 
+ public Sample get(String s); 
+ } 
+ 
+
+class Test { 
+ public static void main(String[] args) { 
+ Interf f = s -> new Sample(s); 
+ f.get("From Lambda Expression"); 
+ Interf f1 = Sample :: new; 
+ f1.get("From Constructor Reference"); 
+ } 
+ }
+
+
+When we write any program, we may face /get two types of errors
+
+1. Compile time errors  --- due to wrong synatax's of language
+
+2. runtime errors -- are hard to detect, and it is not because of language , it may due to many
+reason. we cannot predict the reason before.
+
+
+
+1. When you try to open a file, which is doesnot exits
+2. when you try to read a file, for which you dont' have previleges
+3. When you try to display an arrary at some index, where is there no such index 
+
+Runtime errors are called exceptions
+
+It is the process of handling the runtime exceptions, is called exception handling.
+
+
+
+
+
+Checked Exceptions  --- 
+
+The exceptions which are sub classes to Runtime Exception are called unchecked exceptions
+
+
+
+
+try{
+
+		// keep the exception cod
+}
+catch(ExceptionObject )
+{
+		// hanlding code
+
+}
+finally{
+		// mandatory codee;
+}
+
+
+when multiple catch blocks are provided always parent should not come before a child
+catch block.
+
+
+Covariant referencing----> In the inheritance, the child can be refered with a parent object
+bt a parent cannot be referncced with a child.
+
+class A{
+  int x;
+  int y;
+  public int sample(){   }
+}
+
+class B extends A{
+	int a;
+	int b;
+	public int sample2(){  }
+}
+
+B b = new B();----> no error it will create the object
+
+A b = new B()-----> no error it will create the object
+r
+
+B a = new A();----->error
+
+
+
+
+
+final, finally, finalize
+
+1. final ---> variable, method on class
+when a final keyword is applied on a variable, then it becomes constant, that value cannot be modified
+(prevents change of value)
+
+when a final keyword is applied on a method, then that method cannot be overriden (prevents overriding)
+
+when a final is applied on a class, then it cannot be inherited (it prevents inheritance)
+
+
+finalize is a method in object class, which will be automatically executed whenever
+the object is about to destroy.
+
+It will act as destructor.
+
+
+
+
+
+
+
+-------------------------------------------------------------
+
+try(resource allocation)
+{
+
+
+
+
+}
+
+exception propagation
+--------------------=
+exception occured at one level can be propagated to another level
+an exception occured at one method can be handled at another method level.
+
+
+Throw and Throws
+----------------
+Throws is used when we are handling checked exceptions at diff levels
+
+Throw is used to explcitly raise an error and throw to catch block...
+
+when the exception has to raise
+what exception has to raise
+where it has to be thrown
+
+
+
+Steps in creating user defined exceptions
+------------------------------------------
+1. create a user defined class with user expected exception name and extend either
+   Exception class or RuntimeException class
+
+ 
+   class InvalidAgeException extends RuntimeException {
+
+
+
+   }
+
+2. Provide a default constructor and assign some string through super method.
+
+
+class InvalidAgeException extends RuntimeException {
+	
+	public InvalidAgeException(){
+
+		super("Age should not be less than 0 or greater than 100");
+	}
+
+   }
+
+
+3. specify the condition
+
+4. call the exception 
+
+5. handle the exception
+
+
+Write a java program to handle userdefined exceptions
+
+
+Optional Class
+--------------
+// Java program without Optional Class
+
+public class OptionalDemo {
+	public static void main(String[] args)
+	{
+		String[] words = new String[10];
+		String word = words[5].toLowerCase();
+		System.out.print(word);
+	}
+}
+
+
+// Java program with Optional Class
+
+import java.util.Optional;
+
+public class OptionalDemo {
+	public static void main(String[] args)
+	{
+		String[] words = new String[10];
+		Optional<String> checkNull
+			= Optional.ofNullable(words[5]);
+		if (checkNull.isPresent()) {
+			String word = words[5].toLowerCase();
+			System.out.print(word);
+		}
+		else
+			System.out.println("word is null");
+	}
+}
+
+
+public class Example {  
+    public static void main(String[] args) {  
+    	String[] str = new String[10];   
+        //Getting the substring
+        String str2 = str[9].substring(2, 5);
+        //Displaying substring
+        System.out.print(str2);  
+    }  
+}
+
+
+isNull and ofNullable() methods
+-------------------------------
+
+//Importing Optional class
+import java.util.Optional; 
+public class Example { 
+   public static void main(String[] args) {    
+      String[] str = new String[10];     
+      Optional<String> isNull = Optional.ofNullable(str[9]);        
+      if(isNull.isPresent()){     
+         //Getting the substring           
+         String str2 = str[9].substring(2, 5);          
+         //Displaying substring           
+         System.out.print("Substring is: "+ str2);       
+      }     
+      else{      
+         System.out.println("Cannot get the substring from an empty string");     
+      }                
+      str[9] = "AgraIsCool";       
+      Optional<String> isNull2 = Optional.ofNullable(str[9]);       
+      if(isNull2.isPresent()){        
+         //Getting the substring            
+         String str2 = str[9].substring(2, 5);            
+         //Displaying substring           
+         System.out.print("Substring is: "+ str2);          
+      }         
+      else{         
+         System.out.println("Cannot get the substring from an empty string");         
+      }    
+   }  
+}
+
+
+isPresent() and ifPresent() methods
+-------------------------------------
+
+
+//Importing Optional class
+import java.util.Optional;
+   public class Example {  
+      public static void main(String[] args) {
+        
+
+		 //Creating Optional object from a String
+         Optional<String> GOT = Optional.of("Game of Thrones");   
+
+     
+         //Optional.empty() creates an empty Optional object        
+         Optional<String> nothing = Optional.empty();
+
+
+         /* isPresent() method: Checks whether the given Optional         
+          * Object is empty or not.         
+          */        
+         if (GOT.isPresent()) {          
+            System.out.println("Watching Game of Thrones");       
+         } 
+         else {            
+            System.out.println("I am getting Bored");      
+         }
+         /* ifPresent() method: It executes only if the given Optional         
+          * object is non-empty.         
+          */        
+         //This will print as the GOT is non-empty        
+        
+
+		 GOT.ifPresent(s -> System.out.println("Watching GOT is fun!"));                
+         //This will not print as the nothing is empty        
+         nothing.ifPresent(s -> System.out.println("I prefer getting bored"));
+   }
+}
+
+orElse() and orElseGet() methods
+--------------------------------
+
+//Importing Optional class
+import java.util.Optional;
+   public class Example {  
+      public static void main(String[] args) {
+         //Creating Optional object from a String
+         Optional<String> GOT = Optional.of("Game of Thrones");        
+         //Optional.empty() creates an empty Optional object        
+         Optional<String> nothing = Optional.empty();
+
+         //orElse() method
+         System.out.println(GOT.orElse("Default Value")); 
+         System.out.println(nothing.orElse("Default Value")); 
+
+         //orElseGet() method
+         System.out.println(GOT.orElseGet(() -> "Default Value")); 
+         System.out.println(nothing.orElseGet(() -> "Default Value")); 
+
+    }
+}
+
+
+Methods in Optional Class
+--------------------------
+
+1. static <T> Optional<T> empty()  -- Returns an empty Optional instance.
+
+2. boolean equals(Object obj)  -- Indicates whether some other object is "equal to" this Optional.
+
+3. Optional<T> filter(Predicate<? super <T> predicate)
+
+   If a value is present and the value matches a given predicate, 
+   it returns an Optional describing the value, otherwise returns an empty Optional.
+
+4. <U> Optional<U> flatMap(Function<? super T,Optional<U>> mapper)
+
+If a value is present, it applies the provided Optional-bearing mapping function to it, returns that result, otherwise returns an empty Optional.
+5 	
+
+T get()
+
+If a value is present in this Optional, returns the value, otherwise throws NoSuchElementException.
+6 	
+
+int hashCode()
+
+Returns the hash code value of the present value, if any, or 0 (zero) if no value is present.
+7 	
+
+void ifPresent(Consumer<? super T> consumer)
+
+If a value is present, it invokes the specified consumer with the value, otherwise does nothing.
+8 	
+
+boolean isPresent()
+
+Returns true if there is a value present, otherwise false.
+9 	
+
+<U>Optional<U> map(Function<? super T,? extends U> mapper)
+
+If a value is present, applies the provided mapping function to it, and if the result is non-null, returns an Optional describing the result.
+10 	
+
+static <T> Optional<T> of(T value)
+
+Returns an Optional with the specified present non-null value.
+11 	
+
+static <T> Optional<T> ofNullable(T value)
+
+Returns an Optional describing the specified value, if non-null, otherwise returns an empty Optional.
+12 	
+
+T orElse(T other)
+
+Returns the value if present, otherwise returns other.
+13 	
+
+T orElseGet(Supplier<? extends T> other)
+
+Returns the value if present, otherwise invokes other and returns the result of that invocation.
+14 	
+
+<X extends Throwable> T orElseThrow(Supplier<? extends X> exceptionSupplier)
+
+Returns the contained value, if present, otherwise throws an exception to be created by the provided supplier.
+15 	
+
+String toString()
+
+Returns a non-empty string representation of this Optional suitable for debugging.
+
+
+Multithreading
+--------------
+
+Multi threading is a process of simultenously executing the parts of the same 
+program
+
+s1
+s2   // thread1
+s3
+
+s4
+s5   // thread2
+s6
+
+
+
+Multi tasking
+-------------
+It is the process of executing more than one task.
+
+
+
+
+In java, threads can be created in two ways
+
+1. Thread class inherit the thread methods into our own class
+and create a object for it and call the start method.
+
+
+
+2. Runnable Interface
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
