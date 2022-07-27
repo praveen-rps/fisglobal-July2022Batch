@@ -1,0 +1,131 @@
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class InsertData {
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		
+
+		 Class.forName("com.mysql.jdbc.Driver");
+	//rps@12345	 
+		 //2. establish connection
+		 String url="jdbc:mysql://localhost:3306/fisglobal";
+		 String username="root";
+		 String password="root";
+		 
+		 Connection con = DriverManager.getConnection(url,username,password);
+		 
+		 //3. create a statement object
+		  Statement st = con.createStatement();
+		  
+		  String str = "insert into ssc values (11,'kumar','Bangalore','karnataka')";
+		  	
+		 int k= st.executeUpdate(str);
+		  System.out.println(k+ " Record inserted....");
+		  	st.close();
+
+	}
+
+}
+
+
+
+// program to read the data from keyboard and insert into table;
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+
+
+public class ReadDataFromKeyBoard {
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		
+
+		 Class.forName("com.mysql.jdbc.Driver");
+	//rps@12345	 
+		 //2. establish connection
+		 String url="jdbc:mysql://localhost:3306/fisglobal";
+		 String username="root";
+		 String password="root";
+		 
+		 Connection con = DriverManager.getConnection(url,username,password);
+		 
+		 String str = "insert into ssc values (?,?,?,?)";
+		 PreparedStatement pst = con.prepareStatement(str);
+		 
+		 Scanner sc = new Scanner(System.in);
+		 System.out.println("Enter htno ");
+		 int hnto = sc.nextInt();
+		 System.out.println("Enter name ");
+		 String name = sc.next();
+		 System.out.println("Enter city ");
+		 String city = sc.next();
+		 System.out.println("Enter state ");
+		 String state = sc.next();
+		 
+		 pst.setInt(1, hnto);
+		 pst.setString(2, name);
+		 pst.setString(3, city);
+		 pst.setString(4,state);
+		 
+		 int k = pst.executeUpdate();
+		 System.out.println("Record inserted...");
+
+	}
+
+}
+
+// program to read the htno and display the result
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+public class SearchData {
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		
+
+		 Class.forName("com.mysql.jdbc.Driver");
+	//rps@12345	 
+		 //2. establish connection
+		 String url="jdbc:mysql://localhost:3306/fisglobal";
+		 String username="root";
+		 String password="root";
+		 
+		 Connection con = DriverManager.getConnection(url,username,password);
+		 
+		 String str = "select * from ssc where htno=?";
+		 PreparedStatement pst = con.prepareStatement(str);
+		 
+		 Scanner sc = new Scanner(System.in);
+		 System.out.println("Enter htno ");
+		 int hnto = sc.nextInt();
+		 
+		 pst.setInt(1, hnto);
+		
+		 
+		 ResultSet rs = pst.executeQuery();
+		 if(rs!=null) {
+		 while(rs.next())
+			 System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4));
+		 }
+		 else
+			 System.out.println("No Record found...");
+		 rs.close();
+		pst.close();
+		con.close();
+
+
+	}
+
+}
