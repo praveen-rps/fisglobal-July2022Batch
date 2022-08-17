@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.fisnoteservice.model.CommentsDto;
 import com.example.fisnoteservice.model.Note;
 import com.example.fisnoteservice.service.NoteService;
 
@@ -20,6 +21,13 @@ public class NoteController {
 	
 	@Autowired
 	NoteService service;
+	
+	
+	@GetMapping("/search/comments/{pid}")
+	public List<CommentsDto> getCommentsForPostId(@PathVariable("pid")int pid){
+		
+		return service.findCommentsForPid(pid);
+	}
 	
 	
 	@GetMapping("/all")

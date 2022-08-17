@@ -4,13 +4,21 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.example.fisnoteservice.model.CommentsDto;
 import com.example.fisnoteservice.model.Note;
 import com.example.fisnoteservice.repo.NoteRepository;
 
 
 @Service
 public class NoteServiceImpl implements NoteService{
+	
+	@Autowired
+	FeignProxy proxy;
+	
+	@Autowired
+	RestTemplate template;
 	
 	@Autowired
 	NoteRepository repo;
@@ -44,6 +52,16 @@ public class NoteServiceImpl implements NoteService{
 	public List<Note> findAllNotesByTitle(String title) {
 		// TODO Auto-generated method stub
 		return repo.findNotesByTitle(title);
+	}
+
+	@Override
+	public List<CommentsDto> findCommentsForPid(int pid) {
+		// TODO Auto-generated method stub
+		
+		String url= "http://localhost:8082/comments/search/"+pid;
+		//return template.getForObject(url, List.class);
+		
+		return proxy.searchCommentsByPid(pid);
 	}
 
 }
