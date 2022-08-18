@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.example.fisnoteservice.model.CommentsDto;
 
 
-@FeignClient(name="commentservice", url="http://localhost:8082/comments")
+@FeignClient(name="commentservice")
 public interface FeignProxy {
 	
-	@GetMapping("/search/{pid}")
+	@GetMapping("comments/search/{pid}")
 	public List<CommentsDto> searchCommentsByPid(@PathVariable("pid") int pid);
+
+	@GetMapping("comments/port")
+	public String getPort();
 
 }

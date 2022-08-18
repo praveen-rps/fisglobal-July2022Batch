@@ -14,4 +14,5 @@ public interface NoteService {
 	public List<Note> findAllNotesByTitle(String title);
 	
 	public List<CommentsDto> findCommentsForPid(int pid);
+	public String getCommentsPort();
 }

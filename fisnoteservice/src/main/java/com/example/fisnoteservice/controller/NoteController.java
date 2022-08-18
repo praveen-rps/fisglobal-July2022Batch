@@ -23,6 +23,12 @@ public class NoteController {
 	NoteService service;
 	
 	
+	@GetMapping("/getCommnetPort")
+	public String getCommentsPorts() {
+		return "Note Service is connected to comments service running on  "+service.getCommentsPort()+" port ";
+	}
+	
+	
 	@GetMapping("/search/comments/{pid}")
 	public List<CommentsDto> getCommentsForPostId(@PathVariable("pid")int pid){
 		

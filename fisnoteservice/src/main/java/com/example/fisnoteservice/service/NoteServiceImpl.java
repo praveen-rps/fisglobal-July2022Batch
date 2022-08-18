@@ -58,10 +58,16 @@ public class NoteServiceImpl implements NoteService{
 	public List<CommentsDto> findCommentsForPid(int pid) {
 		// TODO Auto-generated method stub
 		
-		String url= "http://localhost:8082/comments/search/"+pid;
+		//String url= "http://COMMENTSERVICE/comments/search/"+pid;
 		//return template.getForObject(url, List.class);
 		
 		return proxy.searchCommentsByPid(pid);
+	}
+
+	@Override
+	public String getCommentsPort() {
+		// TODO Auto-generated method stub
+		return proxy.getPort();
 	}
 
 }
