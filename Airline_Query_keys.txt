@@ -1,0 +1,57 @@
+Airline Schema Keys
+
+
+1. SELECT profile_id FROM air_ticket_info
+group by profile_id
+having count(ticket_id)>=all(select count(ticket_id)
+from air_ticket_info
+group by profile_id) order by profile_id;
+
+
+
+2. SELECT flight_id,count(flight_departure_date) 
+No_of_services,sum(price) Total_Price FROM
+air_flight_details GROUP BY flight_id
+ORDER BY Total_price DESC,flight_id DESC;
+
+3. SELECT flight_id,flight_departure_date,count(ticket_id) 
+No_of_passengers FROM air_ticket_info GROUP BY 
+flight_id,flight_departure_date
+ORDER BY flight_id,flight_departure_date;
+
+4. SELECT profile_id FROM air_ticket_info
+GROUP BY profile_id HAVING count(ticket_id)<=ALL
+(SELECT count(ticket_id) FROM air_ticket_info GROUP BY profile_id)
+ORDER BY profile_id;
+
+5. SELECT profile_id, last_name, mobile_number, email_id
+FROM air_passenger_profile
+WHERE address LIKE '%Chennai%' 
+ORDER BY profile_id;
+
+6. SELECT count(flight_id) FLIGHT_COUNT FROM air_flight 
+WHERE from_location='CHENNAI' 
+AND departure_time BETWEEN '06:00:00' AND '18:00:00';
+
+7. SELECT card_type, count(card_type) Card_Count 
+FROM air_credit_card_details GROUP BY card_type 
+ORDER BY card_type;
+
+8. SELECT substring(profile_id,-3) SERIAL_NO,first_name,mobile_number,email_id FROM
+air_passenger_profile
+WHERE email_id LIKE '%@gmail.com'
+ORDER BY first_name;
+
+9. SELECT from_location,count(flight_id) No_of_Flights FROM
+air_flight GROUP BY from_location
+ORDER BY from_location;
+
+10. SELECT flight_id,flight_departure_date,
+case when price<3000 then 'AIR PASSENGER'
+when price>=3000 and price<4000 then 'AIR BUS'
+when price>=4000 then 'EXECUTIVE PASSENGER'
+end 
+FLIGHT_TYPE FROM air_flight_details
+ORDER BY flight_id,flight_departure_date;
+
+
