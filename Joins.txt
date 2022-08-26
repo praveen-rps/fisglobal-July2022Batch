@@ -1,0 +1,91 @@
+Joins
+-----
+JOINS are used to retrieve data from multiple tables in a single query. 
+
+For JOINs to work, the tables need to be related to each other with a common key value.
+
+JOIN clauses are used in the SELECT, UPDATE, and DELETE statements.
+
+
+MySQL supports the following types of JOIN clauses: 
+1. INNER JOIN
+2. OUTER JOIN -- Left Outer Join and Right Outer Join
+3. CROSS JOIN
+
+
+Inner Joins
+------------
+INNER JOINs are used to fetch only common matching records. The INNER JOIN clause allows 
+retrieving only those records from Table A and Table B, that meet the join condition. 
+
+It is the most widely used type of JOIN.
+
+syntax:
+-------
+SELECT columns
+FROM tableA 
+INNER JOIN tableB
+ON tableA.column = tableB.column;
+
+
+
+customers(cid,name,city)
+1001,praveen,hyderabad
+1002,kumar,chennai
+1003,kishore,bangalore
+
+
+orders(oid,odate,products,cid)
+9001,date1,products1,1001
+9002,date2,products2,1003
+9003,date3,products3,1001
+
+1001,praveen,hyderabad,9002,date1,proudcts1
+
+
+select c.cid,c.name,c.city,o.oid,o.odate,o.products from customers c inner join orders o 
+on customers.cid=orders.cid
+
+
+customers left outer join orders
+
+1001,praveen,hyderabad 9001 date1 products1
+1002,kumar,chennai null null null null
+1003,kishore,bangalore 9002,date2,proudcts2
+1001,praveen,hyderabad 9003,date3,products3
+
+
+
+
+LEFT Join 
+---------
+This join will returns all the records from the left table and only common records
+from the right table.
+
+SELECT columns
+FROM tableA 
+LEFT JOIN tableB
+ON tableA.column = tableB.column;
+
+Right Join 
+---------
+This join will returns all the records from the right table and only common records
+from the left table.
+
+SELECT columns
+FROM tableA 
+RIGHT 	 JOIN tableB
+ON tableA.column = tableB.column;
+
+Full Outer Join
+---------------
+This join will return all the records from the left and right tables, if any matching
+column is not available then inserts with null value.
+
+
+
+
+
+
+ex: select a.auid,a.username,a.password,b.firstname,b.lastname from users a
+    inner join userprofile b on users.auid=userprofile.auid;
