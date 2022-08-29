@@ -1,0 +1,204 @@
+Insert on Duplicate Key
+--------------------------
+
+The syntax of INSERT ON DUPLICATE KEY UPDATE statement is as follows:
+
+INSERT INTO table (column_list)
+VALUES (value_list)
+ON DUPLICATE KEY UPDATE
+   c1 = v1, 
+   c2 = v2,
+   ...;
+
+
+Ex>
+INSERT INTO table_name(c1)
+VALUES(c1)
+ON DUPLICATE KEY UPDATE c1 = VALUES(c1) + 1;
+
+
+CREATE TABLE devices (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+
+INSERT INTO devices(name)
+VALUES('Router F1'),
+('Switch 1'),
+('Switch 2');
+
+
+SELECT id,  name FROM devices;
+
+
+INSERT INTO  devices(name) VALUES ('Printer') ON DUPLICATE KEY UPDATE name = 'Printer';
+
+
+INSERT INTO devices(id,name) VALUES  (4,'Printer') ON DUPLICATE KEY UPDATE name = 'Central Printer';
+
+
+
+
+
+In MySQL, JOIN clauses in the UPDATE statement to perform the cross-table update.
+---------------------------------------------------------------------------------
+
+The syntax of the MySQL UPDATE JOIN  is as follows:
+
+UPDATE T1, T2,
+[INNER JOIN | LEFT JOIN] T1 ON T1.C1 = T2. C1
+SET T1.C2 = T2.C2, 
+    T2.C3 = expr
+WHERE condition
+
+
+UPDATE T1,T2
+INNER JOIN T2 ON T1.C1 = T2.C1
+SET T1.C2 = T2.C2,
+      T2.C3 = expr
+WHERE condition
+
+
+
+CREATE DATABASE IF NOT EXISTS empdb;
+
+USE empdb;
+
+-- create tables
+
+CREATE TABLE merits (
+    performance INT(11) NOT NULL,
+    percentage FLOAT NOT NULL,
+    PRIMARY KEY (performance)
+);
+
+CREATE TABLE meritemployees (
+    emp_id INT(11) NOT NULL AUTO_INCREMENT,
+    emp_name VARCHAR(255) NOT NULL,
+    performance INT(11) DEFAULT NULL,
+    salary FLOAT DEFAULT NULL,
+    PRIMARY KEY (emp_id),
+    CONSTRAINT fk_performance FOREIGN KEY (performance)
+        REFERENCES merits (performance)
+);
+
+
+
+-- insert data for merits table
+INSERT INTO merits(performance,percentage)
+VALUES(1,0),
+      (2,0.01),
+      (3,0.03),
+      (4,0.05),
+      (5,0.08);
+-- insert data for employees table
+INSERT INTO meritemployees(emp_name,performance,salary)      
+VALUES('Mary Doe', 1, 50000),
+      ('Cindy Smith', 3, 65000),
+      ('Sue Greenspan', 4, 75000),
+      ('Grace Dell', 5, 125000),
+      ('Nancy Johnson', 3, 85000),
+      ('John Doe', 2, 45000),
+      ('Lily Bush', 3, 55000);
+
+
+
+UPDATE meritemployees
+        INNER JOIN
+    merits ON meritemployees.performance = merits.performance 
+SET 
+    salary = salary + salary * percentage;
+
+
+MySQL DELETE JOIN with INNER JOIN
+---------------------------------
+MySQL also allows you to use the INNER JOIN clause in the DELETE statement to delete rows from a table and 
+the matching rows in another table.
+
+
+syntax:
+
+DELETE T1, T2
+FROM T1
+INNER JOIN T2 ON T1.key = T2.key
+WHERE condition;
+
+
+DROP TABLE IF EXISTS t1, t2;
+
+CREATE TABLE t1 (
+    id INT PRIMARY KEY AUTO_INCREMENT
+);
+
+CREATE TABLE t2 (
+    id VARCHAR(20) PRIMARY KEY,
+    ref INT NOT NULL
+);
+
+INSERT INTO t1 VALUES (1),(2),(3);
+
+INSERT INTO t2(id,ref) VALUES('A',1),('B',2),('C',3);
+
+
+DELETE t1,t2 FROM t1
+        INNER JOIN
+    t2 ON t2.ref = t1.id 
+WHERE
+    t1.id = 1;
+
+
+SEQUENCE  (WORKS ONLY ON ORACLE)
+---------------------------------
+
+
+	Sequence is a schema object that can be generate unique sequential values.
+	
+	the sequence values are often user for primary keys and unique keys.
+
+	to refer to the current or next value of sequence in the scheme of another use, the following
+	previliges be available.
+
+	1. SELECT OBJECT PRIVILAGE
+
+	2. SELECT ANY SEQUENCE
+
+
+	CREATING SEQUENCES:
+	-------------------
+
+	SYNTAX:
+
+	CREATE SEQUENCE <SEQUENCENAME> INCREMENT BY N
+	START WITH M
+	MAXVALUE N | NOMAXVALUE
+	MINVALUE M | NOMINVALUE
+	CYCLE | NOCYCLE
+	CACHE N| NOCACHE
+	ORDER | NOORDER
+
+
+	CREATE SEQUENCE TDEPT_SEQ INCREMENT BY 10 START WITH 10 MINVALUE 0 MAXVALUE 9999 NOCACHE NOCYCLE.
+
+
+	CREATE TABLE TDEPT
+	(
+		DEPTNO NUMBER(4) CONTRAINT TDEPT_NO PRIMARY KEY,
+		DNAME VARCHAR2(14),
+		DLOC VARCHAR2(15)
+	);
+
+
+	INSERT INTO TDEPT VALUES(TDEPT_SEQ.NEXTVAL, 'SOFTWARE','HYDERABAD');
+
+	TO VIEW THE CURRENT VALUE IN SEQUENCE
+	-------------------------------------
+
+	SELECT TDEPT_SEQ.CURRVAL FROM DUAL;
+
+	TO REMOVE THE SEQUENCE
+	----------------------
+	
+	DROP SEQUENCE TDEPT_SEQ
+
+
