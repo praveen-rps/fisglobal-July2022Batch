@@ -1,0 +1,136 @@
+Registries are storages
+
+1. public  --- a public storage, where any one can access the images  (default)
+
+2. private  --- a secured, where only authroized users can access the images
+
+
+
+docker management commands
+
+
+1. docker --version
+2. docker images
+3. docker ps -a
+4. docker ps 
+5. docker run -d -p --name 
+6. docker exec -it 
+7. docker start
+8. docker stop
+9. docker logs
+10. docker inspect
+10. docker network create <networkname> ---> used to create user-defined network
+
+11. docker build -t javaimage .
+
+
+Dockerfile commands
+-------------------
+
+Dockerfile  -> a simple notepad file, which consists of intructions to build the image
+instructions are given through dockerfile commands
+
+1. FROM --- used to represent the base image
+
+2. ADD --- used to copy the contents from source to container
+
+  ADD d://configs/f1.txt /var/lib
+  ADD http://url  /var/lib
+  ADD xyz.zip   /var/lib  ----> first it extracts the zip and that extracted file will be copied to /var/lib
+
+
+3. COPY ----> used to copy the contents from local machine to container
+
+    COPY d://configs/f1.txt /var/lib
+    COPY xyz.zip /var/lib---> copies xyz.zip to the /var/lib
+
+    copy cannot access from urls
+
+
+4. RUN ---> this command is used to run any linux based command
+
+    RUN mkdir /tmp/spring-temp
+
+
+5. EXPOSE ----> this is used to expose a application running inside the container to host machine
+
+
+
+6. VOLUME -----> this is used to mount the host machine storage to container
+
+    VOLUME D://DATA  /var/lib
+
+7. ENV ----> It is used to set the environment variables.
+
+
+8. WORKDIR ---> used to set a default workdir for container
+   ADD F1.TXT /
+
+   WORKDIR /tmp
+   
+
+
+9. USER ---> we can set the default user for the container
+
+10. CMD  ---> is used to set a default entry command to run, when the container is started.
+
+
+
+
+step1. create a docker file with the following lines
+FROM openjdk
+
+RUN mkdir /javaexs
+
+ADD Test.java /javaexs
+
+
+step2. -- build the image
+
+docker build -t demoimage .
+
+step 3-- create the container
+
+docker run -d -i -t --name democontainer demoimage
+
+step4 -- go inside the container
+
+docker exec -it democontainer /bin/sh
+
+step5--- goto javaexs folder
+cd javaexs
+
+step6-- compile java program and run it
+javac Test.java
+java Test
+
+
+
+
+FROM openjdk
+RUN mkdir /jars
+ADD c://demoproject-1.0.jar /jars
+EXPOSE 8085
+CMD ["java","-jar","/jars/demoproject-1.0.jar"]
+
+
+docker build -t restdemoimage .
+
+docker run -d -i -t -p 8085:8085 --name restdemocontainer restdemoimage
+
+
+open the browser and call localhost:8085/test1
+localhost:8085/test2
+
+
+
+
+
+
+
+
+
+
+
+
+
