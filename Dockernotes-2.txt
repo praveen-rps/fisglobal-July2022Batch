@@ -124,9 +124,58 @@ localhost:8085/test2
 
 
 
+steps to verify the docker volume
+----------------------------------
+1. docker volume create mysql
+
+2. docker pull mysql
+
+3. docker run --name mysqlcontainer -d -p 3307:3306  -e MYSQL_ROOT_PASSWORD=root 
+   -v mysql:/var/lib/mysql   mysql
+
+4. docker exec -it mysqlcontainer /bin/sh
+   sh:/ mysql -uroot -p
+      password: root
+  mysql> create database fisglobal;
+
+5. docker run -d -i -t -p 8761:8761 --name fiseurekaserver springcloud/eureka
+
+
+6. open the browser and call localhost:8761  
+
+7. import commentservice project from git hub into eclipse workspace
+   https://github.com/praveen-rps/fisglobal-July2022Batch.git
+
+
+8. change the url of spring jdbc mysql port to 3307.
+   spring.datasource.url=jdbc:mysql://localhost:3307/fisglobal
+
+
+9. start your springboot application
+
+
+10. open the browser localhost:8083/comments/all
+
+    []
 
 
 
+11. remove the mysqlcontainer by using below command
+    docker stop mysqlcontainer
+    docker rm mysqlcontainer
+
+
+12. create another container with mysqlcontainer1 name 
+
+    docker run --name mysqlcontainer1 -d -p 3307:3306  -e MYSQL_ROOT_PASSWORD=root 
+   -v mysql:/var/lib/mysql   mysql
+
+
+
+13.open the browser localhost:8083/comments/all
+
+
+you should see the previous data which is accessed from mysqlcontainer
 
 
 
