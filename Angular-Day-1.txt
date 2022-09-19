@@ -1,0 +1,249 @@
+
+
+Java
+
+
+Spring and Springboot
+
+
+SQL
+
+
+Microservices or JAX
+
+
+DevOps
+
+Angular
+
+Introduction
+
+Flow of the execution of the angular page
+
+Internal programing basics -- TypeScript
+
+Directives
+
+Components
+
+services
+
+Data Binding
+
+routing
+
+component communication
+
+Observables
+
+Small use case to connect from angular frontend to spring boot backend.
+
+
+
+
+Angular
+
+1. SPA 
+
+2. It supports REST API communication
+
+3. Live Reloading
+
+4. It supports integrating Bootstrap for nice templates
+
+
+
+Angular is installed through node.js
+
+
+npm install -g @angular/cli
+
+
+To create a project in angular
+-------------------------------
+
+In angular when we create a compoent,  the following files ar3 asssociated.
+
+Component is sub element in the angular spa, which performs specific functionality
+
+
+
+app
+----
+
+1. app.component.ts  ----- will consists of the processing logic / bussiness logic --->typescript
+2. app.component.html   --- html code that will consists of UI ie, user interafce  --html
+3. app.component.css  ---  style part of html   -- css
+4. app.component.spec.ts  --- unit testing code for component.ts -- karma / jasmine
+
+5. app-routing.component.ts ----> routing information / hyperlinking
+6. app.module.ts  ----> will contain the modules that are to be injected into angular project
+
+
+login
+-----
+1. login.component.ts
+2. login.component.html
+3. login.component.css
+4. login.compoenent.spec.ts
+
+
+register
+--------
+
+1. register.compoent.ts
+2. register.component.html
+3. register.componen.css
+4. register.component.spec.ts
+
+
+
+common style---->compoent style
+
+
+
+
+By default, app component is created and that component will be injected to index.html
+page
+
+
+
+
+main.ts---->
+
+@RestController  ---> Annotation
+
+@Component ----> Decoration  @ ---> Decorator
+
+
+@NgModule ---> Decorator used to specify the module
+
+@Component
+
+
+
+
+main.ts ----> AppComponent---> index.html
+
+
+ng g c <componentname> 
+
+ng g c login
+
+1. login.component.ts
+
+	@Component(
+		selector:'log-app',
+		templateUrl:'./login.component.html',
+		styleUrls:'./login.component.css'
+	)
+	export class LoginComponent{
+
+
+    }
+
+2. login.component.html
+3. login.component.css
+4. login.component.spec.ts
+
+
+
+ng g c register
+----------------
+
+
+1. create a folder called register
+
+2. inside the register folder create two files
+     a. register.component.ts
+	
+		
+		@Component({
+				selector:'reg',
+				templateUrl:'./register.component.html'
+		})
+		export class RegisterComponent{
+
+
+		}
+
+
+     b. register.component.html
+        write any html tags...
+
+
+
+ng g c register
+
+1. register.component.ts
+
+	@Component({
+		selector:'register-app',
+		templateUrl:'./register.component.html',
+		styleUrl:'./register.component.csss'
+	})
+	export class RegisterComponent{ }
+
+
+
+
+2. register.component.html
+3. register.component.css
+4. reister.component.spec.ts
+
+ng g c search
+
+1. search.component.ts
+2. search.component.html
+3. search.component.css
+4. search.component.spec.ts
+
+
+
+<a href="f1.html">click here</a>
+
+
+
+
+steps for routing
+-----------------
+
+1. create three components namely login, register, display
+
+	ng g c login
+    ng g c register
+    ng g c display
+
+
+2. open the app.component.html file and add below contents
+
+<h1> Angular Routing Example</h1>
+
+<a routerLink="/login">Login Page</a><br>
+<a routerLink="/register">New User Click Here</a><br>
+<a routerLink="/display">Display Details</a><br>
+<br>
+<br>
+<br>
+<router-outlet></router-outlet>
+
+
+3. open the app-routing.module.ts and below code:
+
+import { DisplayComponent } from './display/display.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+
+const routes: Routes = [
+
+{path:'login', component: LoginComponent},
+{path:'register', component: RegisterComponent},
+{path:'display', component: DisplayComponent},
+{path:'', component: RegisterComponent}
+
+];
+
+
+
+
+
