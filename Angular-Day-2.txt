@@ -1,0 +1,319 @@
+ng new <projectname>
+
+
+
+What Are Angular Components?
+
+Components are the building blocks of a UI in an Angular application. 
+These components are associated with a template and are a subset of directives. 
+
+
+Here are some of the features of Angular Component: 
+
+1. A TypeScript class is used to create a component. This class is then decorated with 
+   the “@Component” decorator.
+
+2. The decorator accepts a metadata object that gives information about the component.
+
+3. A component must belong to the NgModule in order for it to be usable by another component or application. 
+
+4. Components control their runtime behavior by implementing Life-Cycle hooks. 
+
+to create a component 
+---------------------
+ng g c <componentname>
+
+Then it will create 4 files of below pattern:
+
+
+
+1. componentname.component.ts  --- data and bussiness logic
+2. componentname.component.html  ---- template or UI
+3. componentname.component.css  --- styles
+4. componentname.component.spec.ts  --- unit testing
+
+
+
+
+it will create a class with below pattern
+
+
+@Component({
+	selector:'sel-name',
+	templateUrl:'.\componentname.component.html',
+	styleUrl:'.\componentname.component.css'
+
+})
+export class ComponentnameComponent{
+
+}
+
+
+Databinding
+-----------
+Data binding is the core concept of Angular 8 and used to define the communication between 
+a component and the DOM. 
+
+It is a technique to link your data to your view layer. 
+
+In simple words, you can say that data binding is a communication between your typescript code of 
+your component and your template which user sees.
+
+One way binding:
+----------------
+One way databinding is a simple one way communication where HTML template is changed when we make changes 
+in TypeScript code.
+
+In one-way databinding, the value of the Model is used in the View (HTML page) but you can't update Model from 
+the View
+
+examples: String Interpolation, Property Binding, and Event Binding
+
+String Interpolation:
+---------------------
+
+{{ data }}
+
+String interpolation adds the value of a property from the component:
+
+
+Property Binding
+----------------
+
+Property Binding is also a one-way data binding technique. 
+In property binding, we bind a property of a DOM element to a field which is a defined 
+property in our component TypeScript code. 
+
+    <input type="email" [value]="email">  
+
+
+
+Event Binding
+--------------
+In Angular 8, event binding is used to handle the events raised from the DOM like button click, 
+mouse move etc.
+
+When the DOM event happens (eg. click, change, keyup), it calls the specified method in the component. 
+
+    <button (click)="cookBacon()"></button>  
+
+
+
+
+
+
+    <button (click)="cookBacon()"></button>  
+
+
+Two way binding
+---------------
+In two-way databinding, automatic synchronization of data happens between the Model and the View. 
+
+Here, change is reflected in both components. Whenever you make changes in the Model, 
+it will be reflected in the View and when you make changes in View, it will be reflected in Model.
+
+
+import {FormsModule} from '@angular/forms';    // add in module.ts
+  imports: [    
+    BrowserModule,    
+    FormsModule    
+  ],    
+
+    <h2>Two-way Binding Example</h2>    
+       <input [(ngModel)] ="fullName" /> <br/><br/>    
+    <p> {{fullName}} </p>  
+
+
+
+Directives
+-----------
+The Angular 8 directives are used to manipulate the DOM. 
+
+By using Angular directives, you can change the appearance, 
+behavior or a layout of a DOM element. 
+
+It also helps you to extend HTML. 
+
+Angular 8 directives can be classified in 3 categories 
+based on how they behave:
+
+1. Component Directives
+2. Structural Directives
+3. Attribute Directives
+
+
+Component Directives: Component directives are used in main class. 
+                      They contain the detail of how the component 
+                      should be processed, instantiated and used 
+                      at runtime. 
+
+
+Structural Directives: Structural directives start with a * sign. 
+		       These directives are used to manipulate and change 
+		       the structure of the DOM elements. 
+		       For example, *ngIf directive, *ngSwitch directive, 
+		       and *ngFor directive.
+
+    
+1. *ngIf Directive: The ngIf allows us to Add/Remove DOM Element.
+    
+2. *ngSwitch Directive: The *ngSwitch allows us to Add/Remove DOM Element. 
+			It is similar to switch statement.
+    
+3. *ngFor Directive: The *ngFor directive is used to repeat a portion of HTML
+		     template once per each item from an iterable 
+		      list (Collection).
+
+Attribute Directives: Attribute directives are used to change the 
+look and behavior of the DOM elements. 
+
+For example: ngClass directive, and ngStyle directive etc.
+
+    ngClass Directive: The ngClass directive is used to add or remove CSS classes to an HTML element.
+    ngStyle Directive: The ngStyle directive facilitates you to modify the style of an HTML element using the expression. You can also use ngStyle directive to dynamically change the style of your HTML element.
+
+
+
+@ngIf()
+-------
+<p *ngIf="condition">  
+    condition is true and ngIf is true.  
+</p>  
+<p *ngIf="!condition">  
+    condition is false and ngIf is false.  
+</p> 
+
+ngIf() with if else
+--------------------
+    <div *ngIf="condition; else elseBlock">  
+    Content to render when condition is true.  
+    </div>  
+    <ng-template #elseBlock>  
+    Content to render when condition is false.  
+    </ng-template>  
+
+example
+-------
+    @Component({  
+      selector: 'ng-if-simple',  
+      template: `  
+        <button (click)="show = !show">{{show ? 'hide' : 'show'}}</button>  
+        show = {{show}}  
+        <br>  
+        <div *ngIf="show">Text to show</div>  
+    `  
+    })  
+    export class NgIfSimple {  
+      show: boolean = true;  
+    }  
+
+with else block
+---------------
+    @Component({  
+      selector: 'ng-if-else',  
+      template: `  
+        <button (click)="show = !show">{{show ? 'hide' : 'show'}}</button>  
+        show = {{show}}  
+        <br>  
+        <div *ngIf="show; else elseBlock">Text to show</div>  
+        <ng-template #elseBlock>Alternate text while primary text is hidden</ng-template>  
+    `  
+	
+    })  
+    export class NgIfElse {  
+      show: boolean = true;  
+    }  
+
+*ngFor()
+--------
+    <li *ngFor="let item of items;"> .... </li>  
+
+app.component.ts
+----------------
+import { Component } from '@angular/core';  
+@Component({  
+    selector: 'movie-app',  
+    templateUrl:'./app/app.component.html',  
+    styleUrls:['./app/app.component.css']  
+})  
+export class AppComponent   
+{   
+    title: string ="Top 10 Movies" ;  
+    movies: Movie[] =[  
+        {title:'Zootopia',director:'Byron Howard, Rich Moore',cast:'Idris Elba, Ginnifer Goodwin, Jason Bateman',releaseDate:'March 4, 2016'},  
+        {title:'Batman v Superman: Dawn of Justice',director:'Zack Snyder',cast:'Ben Affleck, Henry Cavill, Amy Adams',releaseDate:'March 25, 2016'},  
+        {title:'Captain America: Civil War',director:'Anthony Russo, Joe Russo',cast:'Scarlett Johansson, Elizabeth Olsen, Chris Evans',releaseDate:'May 6, 2016'},  
+        {title:'X-Men: Apocalypse',director:'Bryan Singer',cast:'Jennifer Lawrence, Olivia Munn, Oscar Isaac',releaseDate:'May 27, 2016'},  
+    ]  
+
+comments : Comments[] =[  
+  {cid:9001, commenter:'sunil',pid : 1001, comment:'your notes is so simple' },  
+  {cid:9003, commenter:'sunil',pid : 1002, comment:'most time waste topic for india' },
+  {cid:9004, commenter:'kishore',pid : 1002, comment:'Teenages must have good knowledge on politics' },
+  {cid:9005, commenter:'Anjali',pid : 1004, comment:'Can you explain more on this' }
+]  
+}   
+class Movie {  
+    title : string;  
+    director : string;  
+    cast : string;  
+    releaseDate : string;  
+} 
+
+app.component.html
+-------------------
+    <div class='panel panel-primary'>  
+        <div class='panel-heading'>  
+            {{title}}  
+        </div>   
+        <div class='panel-body'>  
+            <div class='table-responsive'>  
+                <table class='table'>  
+                    <thead>  
+                        <tr>  
+                            <th>Title</th>  
+                            <th>Director</th>  
+                            <th>Cast</th>  
+                            <th>Release Date</th>  
+                        </tr>  
+                    </thead>  
+                    <tbody>  
+                        <tr *ngFor="let movie of movies;">  
+                            <td>{{movie.title}}</td>  
+                            <td>{{movie.director}}</td>  
+                            <td>{{movie.cast}}</td>  
+                            <td>{{movie.releaseDate}}</td>  
+                        </tr>  
+                    </tbody>  
+                </table>  
+            </div>  
+        </div>  
+    </div>  
+
+ngSwitchCase
+-------------
+    <container_element [ngSwitch]="switch_expression">  
+        <inner_element *ngSwitchCase="match_expresson_1">...</inner_element>  
+        <inner_element *ngSwitchCase="match_expresson_2">...</inner_element>  
+        <inner_element *ngSwitchCase="match_expresson_3">...</inner_element>  
+        <inner_element *ngSwitchDefault>...</element>  
+    </container_element>   
+
+
+
+
+ <inner_element *ngSwitchCase="match_expresson_2">...</inner_element>  
+        <inner_element *ngSwitchCase="match_expresson_3">...</inner_element>  
+Eg:
+---
+
+<ol [ngSwitch]="num">
+<li *ngSwitchCase="10">Ten</li>  
+<li *ngSwitchCase="20">Twenty</li>  
+<li *ngSwitchCase="30">Thirty</li>  
+</ol>
+
+<span>{{ title }} app is running!</span>
+
+
+
