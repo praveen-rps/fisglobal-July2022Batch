@@ -316,4 +316,12 @@ Eg:
 <span>{{ title }} app is running!</span>
 
 
+http: HttpClient  
 
+http.get("localhost:8081/user")
+post()
+put()
+delete()
+options()
+
+https://www.eclipse.org/downloads/packages/release/helios/sr1/eclipse-ide-java-ee-developers
