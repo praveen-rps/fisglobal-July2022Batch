@@ -1,0 +1,251 @@
+1. create angular project by using ng new command
+
+   ng new <projectname>
+
+2. open the project in the vs code 
+
+3. create 4 components namely
+
+   ng g c create
+   ng g c insert
+   ng g c delete
+   ng g c search
+
+4. create a service class by using below command
+   ng g s post
+
+
+
+5. create a post.ts file and add the below contents
+   export interface Post {
+    pid:string,
+    title:string,
+    author:string,
+    description:string
+}
+
+6. Add the service methods to the PostService class
+
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Post } from './post';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PostService {
+
+  constructor(private httpClient : HttpClient) { }
+ 
+ 
+   getAllPosts(){
+     //return this.httpClient.get("http://localhost:8080/posts/show");
+     return this.httpClient.get("http://localhost:8089/posts/show");
+   }
+  
+   insertPostData(post:any){
+     this.httpClient.post("http://localhost:8089/posts/add",post)
+     .subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      });
+   }
+
+   searchDataById(id:number){
+   return this.httpClient.get("http://localhost:8089/posts/"+id);
+    
+   }
+
+   deleteData(id:number){
+     this.httpClient.delete("http://localhost:8089/posts/delete/"+id)
+     .subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      });
+   }
+}
+
+
+
+7. open the diplay.component.ts and add below code:
+import { Component, OnInit } from '@angular/core';
+import { PostService } from '../post.service';
+
+@Component({
+  selector: 'app-display',
+  templateUrl: './display.component.html',
+  styleUrls: ['./display.component.css']
+})
+export class DisplayComponent {
+
+  constructor(private service:PostService) { }
+ posts: any
+   getAllPosts(){
+    this.service.getAllPosts()
+    .subscribe( response =>{
+      this.posts=response;
+      console.log(response);
+    }
+    );
+  }
+
+}
+
+
+8. open the display.component.html and add below contents:
+
+<button type="submit" (click)="getAllPosts()" >Show Data</button>
+<table border =1>
+
+    <tbody>
+        <tr *ngFor="let post of posts">
+           <td>{{post.pid}}</td>
+          <td>{{post.title}}</td>
+          <td>{{post.author}}</td>
+          <td>{{post.description}}</td>
+        </tr>
+</table>
+
+
+
+9. open the create.component.html file and add below code
+import { Component, OnInit } from '@angular/core';
+import { Post } from '../post';
+import { PostService } from '../post.service';
+
+@Component({
+  selector: 'app-create',
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.css']
+})
+export class CreateComponent implements OnInit {
+
+  constructor(private service:PostService) { }
+  tid:any;
+  ttitle:any;
+  tauthor:any;
+  tdescription:any
+  
+  ngOnInit(): void {
+  }
+
+  insertData(){
+
+   
+   let post : Post = {
+      "pid":this.tid,
+      "title":this.ttitle,
+      "author":this.tauthor,
+      "description":this.tdescription
+    }
+   this.service.insertPostData(post);
+  }
+}
+
+
+10. open create.component.html and add below code:
+<table border="1">
+<tr>
+    <td>Enter Post id</td>
+    <td><input type="text" [(ngModel)]="tid"></td>
+</tr>
+<tr>
+    <td>Enter Post Title</td>
+    <td><input type="text" [(ngModel)]="ttitle"></td>
+</tr>
+<tr>
+    <td>Enter Post Author</td>
+    <td><input type="text" [(ngModel)]="tauthor"></td>
+</tr>
+<tr>
+    <td>Enter Post description</td>
+    <td><input type="text" [(ngModel)]="tdescription"></td>
+</tr>
+</table>
+<button type="submit" (click)="insertData()" >Insert Data </button>
+
+
+11. open delete.component.ts file add the below code:
+import { Component, OnInit } from '@angular/core';
+import { PostService } from '../post.service';
+
+@Component({
+  selector: 'app-delete',
+  templateUrl: './delete.component.html',
+  styleUrls: ['./delete.component.css']
+})
+export class DeleteComponent implements OnInit {
+
+  constructor(private service: PostService) { }
+  result :string="";
+  tid:number=0;
+  ngOnInit(): void {
+  }
+
+  deleteData(){
+    this.service.deleteData(this.tid);
+    this.result="Data Deleted...";
+  }
+}
+
+
+12. open the delete.component.html file and add the below code:
+Enter the post id to Delete <input type="text" [(ngModel)]="tid" >
+<button type="submit" (click) = "deleteData()">Delete Data</button>
+
+{{result}}
+
+
+13. open the search.component.ts file and add below code:
+import { Component, OnInit } from '@angular/core';
+import { PostService } from '../post.service';
+
+@Component({
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css']
+})
+export class SearchComponent implements OnInit {
+
+  constructor(private service:PostService) { }
+  tid: number=0;
+  posts:any;
+  ngOnInit(): void {
+  }
+  searchData(){
+    this.service.searchDataById(this.tid)
+    .subscribe( response =>{
+      this.posts=response;
+      console.log(response);
+    }
+    );
+   
+  }
+
+}
+
+14. open the search.component.html file and below contents:
+
+
+Enter the post id to search <input type="text" [(ngModel)]="tid" >
+<button type="submit" (click) = "searchData()">Search Data</button>
+
+<table border =1 >
+    <tr>
+        <td>{{posts.pid}}</td>
+        <td>{{posts.title}}</td>
+        <td>{{posts.author}}</td>
+       
+    </tr>
+    </table>
+
+15. save all the above changes and run the project
+    ng serve --open
+
+
