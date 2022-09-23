@@ -1,0 +1,88 @@
+class Student{
+
+	int id;
+	String name;
+	int m1;
+	int m2;
+	// default and parametarized constructor
+	//write the getter and setter methods
+
+	// override toString()
+
+}
+
+
+class StudentDao{
+		Statement st=null;
+		PreparedStatement pst=null;
+		ResultSet rs=null;
+
+		static{
+
+
+	con=DriverManger.getConnection(x,y,z);
+
+		}
+
+	public List<Student>  getAllStudents(){
+
+		List<Student> students = new ArrayList<>();
+	
+	  st = con.createStatement();
+	  rs = st.executeQuery("select * from students");
+	  while(rs.next()){
+			Student s = new Student(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
+			students.add(s);
+	}
+
+	public String insertStudent(Student s){
+		String sql = "insert into students values(?,?,?,?)");
+		pst = con.prepareStatement(sql);
+		pst.setInt(1, s.getId());
+		pst.setString(2, s.getName());
+		pst.setString(3, s.getM1());
+		pst.setString(4, s.getM2());
+		int k = pst.executeUpdate();	
+		if(k==1)
+			return "record inserted";
+		else
+			return "record not inserted";
+
+	}
+	
+
+	  
+
+	}
+		
+
+}
+
+
+
+public class StudentService{
+
+Student dao;
+
+
+public StudentService(){
+	dao= new StudentDao();
+
+}
+	
+public List<Student> displayAllRecords(){
+
+	return dao.getAllStudents();
+
+
+}
+
+
+
+public static void main(){
+
+
+		StudentService service = new StudentService();
+
+		List<Students> students = service.displayAllRecords();
+		students.forEach(System.out::println);
