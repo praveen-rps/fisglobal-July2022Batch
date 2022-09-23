@@ -1,0 +1,51 @@
+AirLine Queries
+---------------
+
+1. Write a query to display the average monthly ticket cost for each flight in ABC Airlines. The query 
+should display the Flight_Id,From_location,To_Location,Month Name as “Month_Name” and average 
+price as “Average_Price”. Display the records sorted in ascending order based on flight id and then by 
+Month Name.
+
+2. 2.Write a query to display the number of flight services between locations in a month. The Query 
+should display From_Location, To_Location, Month as “Month_Name” and number of flight services 
+as “No_of_Services”. Hint: The Number of Services can be calculated from the number of scheduled 
+departure dates of a flight. The records should be displayed in ascending order based on 
+From_Location and then by To_Location and then by month name.
+
+3. 3.Write a query to display the customer(s) who has/have booked least number of tickets in ABC 
+Airlines. The Query should display profile_id, customer’s first_name, Address and Number of tickets 
+booked as “No_of_Tickets”Display the records sorted in ascending order based on customer's first 
+name.
+
+4. Write a query to display flight id,from location, to location and ticket price of flights whose 
+departure is in the month of april.Display the records sorted in ascending order based on flight id and 
+then by from location.
+
+5.  Write a query to display the no of services offered by each flight and the total price of the services. 
+The Query should display flight_id, number of services as “No_of_Services” and the cost as 
+“Total_Price” in the same order. Order the result by Total Price in descending order and then by 
+flight_id in descending order.Hint:The number of services can be calculated from the number of 
+scheduled departure dates of the flight
+
+6. Write a query to display profile id of passenger(s) who booked minimum number of tickets. In case 
+of multiple records, display the records sorted in ascending order based on profile id.
+
+7. Write a query to display unique profile id,first name , email id and contact number of passenger(s) 
+who travelled on flight with id 3178. Display the records sorted in ascending order based on first 
+name.
+
+8. Write a query to display the credit card type and no of credit cards used on the same type. Display 
+the records sorted in ascending order based on credit card type.Hint: Use CARD_COUNT AS Alias name 
+for no of cards
+
+9.  Write a query to display the flights available in Morning, AfterNoon, Evening& Night. The Query 
+should display the Flight_Id, From_Location, To_Location , Departure_Time, time of service as 
+"Time_of_Service". Time of Service should be calculated as: From 05:00:01 Hrs to 12:00:00 Hrs - 
+Morning, 12:00:01 to 18:00:00 Hrs -AfterNoon, 18:00:01 to 24:00:00 - Evening and 00:00:01 to 
+05:00:00 - NightDisplay the records sorted in ascending order based on flight id
+
+10. . Write a query to display the number of flights flying from each location. The Query should display 
+the from location and the number of flights to other locations as “No_of_Flights”. Hint: Get the 
+distinct from location and to location.Display the records sorted in ascending order based on from 
+location.
+

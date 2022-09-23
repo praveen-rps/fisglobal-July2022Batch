@@ -1,0 +1,57 @@
+Video Library Queries
+----------------------
+
+1.Write a query to display movie names and number of times that movie is issued to 
+customers. Incase movies are never issued to customers display number of times as 0. Display 
+the details in sorted order based on number of times (in descending order) and then by
+movie name (in ascending order). The Alias name for the number of movies issued is 
+ISSUE_COUNT.
+
+
+2.Write a query to display id,name,age,contact no of customers whose age is greater than 25 
+and and who have registered in the year 2012. Display contact no in the below format +91-
+XXX-XXX-XXXX example +91-987-678-3434 and use the alias name as "CONTACT_ISD". If the 
+contact no is null then display as 'N/A' Sort all the records in ascending order based on age 
+and then by name.
+
+3.Write a query to display the movie category and number of movies in that category. Display 
+records based on number of movies from higher to lower order and then by movie category 
+in ascending order.Hint: Use NO_OF_MOVIES as alias name for number of movies.
+
+
+4.Write a query to display the customer id, customer name, year of registration,library card 
+id, card issue date of all the customers who hold library card. Display the records sorted by 
+customer name in descending order. Use REGISTERED_YEAR as alias name for year of 
+registration.
+
+
+5. .Write a query to display issue id, customer id, customer name for the customers who have 
+paid fine and whose name starts with 'R'. Fine is calculated based on return date and actual 
+date of return. If the date of actual return is after date of return then fine need to be paid by 
+the customer order by customer name.
+
+
+6. Write a query to display the customer id, customer name,contact number and address of 
+customers who have taken movies from library without library card and whose address ends 
+with 'Nagar'. Display customer name in upper case. Hint: Use CUSTOMER_NAME as alias 
+name for customer name. Display the details sorted in ascending order based on customer 
+name.
+
+7. Write a query to display the movie id, movie name,release year,director name of movies 
+acted by the leadactor1 who acted maximum number of movies .Display the records sorted in 
+ascending order based on movie name.
+
+
+8. Write a query to display the issue id,issue date, customer id, customer name and contact 
+number for videos that are issued in the year 2013.Display the records in decending order 
+based on issue date of the video.
+
+
+9. .Write a query to display number of customers who have registered in the library in the 
+year 2012 and who have given/provided contact number. <br> Hint:Use NO_OF_CUSTOMERS 
+as alias name for number of customers.
+
+10. Write a query to display the customer id , customer name and number of times movies 
+have been issued from Comedy category. Display only for customers who has taken more 
+than once. Hint: Use NO_OF_TIMES as alias name Display the records in ascending order 
+based on customer name.
