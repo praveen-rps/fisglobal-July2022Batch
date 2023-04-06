@@ -1,0 +1,57 @@
+Queries
+--------
+1. Write a query to display profile id of the passenger(s) who has/have booked maximum number of 
+tickets.In case of multiple records, display the records sorted in ascending order based on profile id.
+
+2. Write a query to display the no of services offered by each flight and the total price of the services. 
+The Query should display flight_id, number of services as “No_of_Services” and the cost as 
+“Total_Price” in the same order. Order the result by Total Price in descending order and then by 
+flight_id in descending order.
+Hint:The number of services can be calculated from the number of 
+scheduled departure dates of the flight.
+
+3. Write a query to display the number of passengers who have travelled 
+in each flight in each scheduled date. 
+
+The Query should display flight_id, flight_departure_date and the number of 
+passengers as “No_of_Passengers” in the same order.
+
+Display the records sorted in ascending order based on flight id and then by 
+flight departure date.
+
+4. Write a query to display profile id of passenger(s) who booked minimum number 
+of tickets. In case of multiple records, display the records sorted in ascending 
+order based on profile id.
+
+5. Write a query to display profile id,last name,mobile number and email id of 
+passengers whose base location is chennai.
+Display the records sorted in ascending order based on profile id.
+
+6. Write a query to display number of flights between 6.00 AM and 6.00 PM from 
+chennai. 
+Hint Use LIGHT_COUNT as alias name.
+
+7. Write a query to display the credit card type and no of credit cards used on the same type. 
+Display the records sorted in ascending order based on credit card type.
+Hint: Use CARD_COUNT AS Alias name for no of cards.
+
+8. Write a Query to display serial no, first name, mobile number, email id of 
+all the passengers who holds email address from gmail.com.
+
+The Serial No will be the last three digits of profile ID.Hint: 
+Use SERIAL_NO as Alias name for serial number.Display the records sorted in ascending order based on 
+name.
+
+9. Write a query to display the number of flights flying from each location. 
+The Query should display the from location and the number of flights to other 
+locations as “No_of_Flights”.
+Hint: Get the distinct from location and to location.
+Display the records sorted in ascending order based on from location
+
+10. Write a query to display flight id,departure date,flight type of all flights. 
+Flight type can be identified based on the following rules : 
+if ticket price is less than 3000 then 'AIR PASSENGER',ticket 
+price between 3000 and less than 4000 'AIR BUS' and ticket price between 4000 and greater than 4000 
+then 'EXECUTIVE PASSENGER'. Hint use FLIGHT_TYPE as alias name.Display the records sorted in 
+ascendeing order based on flight_id and then by departure date and
+use case syntax to write the query.
